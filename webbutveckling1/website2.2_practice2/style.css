@@ -1,0 +1,19 @@
+.logo_img {
+    width: 80px;
+    border: 5px double red;
+    border-radius: 50%;
+}
+
+.menu {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+li {
+    background-color: gray;
+}
+
+.logo {
+    background-color: transparent;
+}
