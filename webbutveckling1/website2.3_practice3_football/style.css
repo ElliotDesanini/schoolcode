@@ -1,0 +1,27 @@
+.grass {
+    width: 100%;
+    position: absolute;
+    top: 5px;
+    left: 5px;  
+    z-index: 1;
+}
+
+.L_1 {
+    z-index: 2;
+}
+
+.L_2 {
+    z-index: 2;
+}
+
+.M {
+    z-index: 2;
+}
+
+.R_1 {
+    z-index: 2;
+}
+
+.R_2 {
+    z-index: 2;
+}
