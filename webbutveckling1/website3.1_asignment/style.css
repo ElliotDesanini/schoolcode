@@ -1,0 +1,71 @@
+/* Reset default spacing and set up the gradient background */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(30deg, rgb(137, 182, 191) 0%, rgb(129, 172, 196) 40%, rgb(11, 22, 125) 100%);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Container holds the image and the right-side content */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.25); /* subtle frosted glass effect */
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  padding: 1.5em;
+}
+
+/* Image styling */
+.side-image {
+  width: 80%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Right side layout */
+.right-side {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.right-side h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 1.2em;
+  padding: 0.75em 1.5em;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.right-side h1 {
+  color: rgb(206, 230, 249);
+  -webkit-text-stroke: 2px rgb(5, 33, 56);
+}
+
+.right-side .button {
+    color: rgb(5, 33, 56);
+}

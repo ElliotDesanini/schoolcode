@@ -1,4 +1,27 @@
 body {
     background: #d1e2eb;
-    background: linear-gradient(197deg, rgba(209, 226, 235, 1) 0%, rgba(158, 232, 181, 1) 69%, rgba(128, 240, 101, 1) 100%);
+}
+
+.container {
+  display: flex;
+  background-color: blanchedalmond;
+  padding-left: 3%;
+  align-items: center;
+  gap: 8%;
+}
+
+h1 {
+    background-color: aquamarine;
+}
+
+ul {
+    background-color: aquamarine;
+    gap: 10vw;   
+}
+
+.jumps {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }

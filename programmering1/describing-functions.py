@@ -68,6 +68,3 @@ def strdef(inputstr: str = " abcde ABCDE 12345 #%& catdogR") -> None:
     .isalpha() {inputstr.isalpha()}
     .isdigit() {inputstr.isdigit()}\n
 """)
-
-listdef()
-strdef()
