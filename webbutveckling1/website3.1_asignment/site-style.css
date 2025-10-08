@@ -1,5 +1,5 @@
-body {
-    background: #d1e2eb;
+.body {
+  background: #d1e2eb;
 }
 
 .container {
@@ -10,13 +10,43 @@ body {
   gap: 8%;
 }
 
+.fixed-header {
+  position: sticky;
+  top: 1%;
+  background: transparent;
+  z-index: 10;
+}
+
 h1 {
-    background-color: aquamarine;
+  background-color: aquamarine;
+}
+
+.header-back-link {
+  width: 10vw;
+  height: 10vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  background-image: url("images/littleguy.png");
+  right: 0%;
+  z-index: 10;
+}
+
+.header-back-link:hover {
+  width: 10vw;
+  height: 10vh;
+  background-image: url("images/littleguy2.png");
+  z-index: 10;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
 }
 
 ul {
-    background-color: aquamarine;
-    gap: 10vw;   
+  background-color: aquamarine;
+  gap: 10vw;   
 }
 
 .jumps {
@@ -24,4 +54,8 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+p {
+  font-size: 1000%;
 }
