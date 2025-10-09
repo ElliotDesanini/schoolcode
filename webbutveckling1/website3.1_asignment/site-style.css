@@ -2,6 +2,10 @@
   background: #d1e2eb;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .container {
   display: flex;
   background-color: blanchedalmond;
@@ -12,7 +16,7 @@
 
 .fixed-header {
   position: sticky;
-  top: 1%;
+  top: 2%;
   background: transparent;
   z-index: 10;
 }
@@ -56,6 +60,25 @@ ul {
   margin: 0;
 }
 
+p, h1, h2, h3, a {
+  font-family: "PT Serif", serif;
+}
+
 p {
-  font-size: 1000%;
+  max-width: 50vw;
+  font-size: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  -webkit-text-stroke: 1px black;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+section {
+  scroll-margin-top: 16vh;
 }
