@@ -3,14 +3,14 @@ import random
 
 def listdef(inputlist: list = [3,64,12,654,8,54,22,87,6,5,1,34,7,4]) -> None:
     print(f"""\n
-    basic {inputlist}
+    {inputlist}
     - mutable
     - hashable
-    - non-orderable
     - iterable
     - numeric (element dependant)
     - container
     - sequence
+    - subscriptable
     [5] {inputlist[5]}
     [5:] {inputlist[5:]}
     [:5] {inputlist[:5]}
@@ -43,13 +43,13 @@ def listdef(inputlist: list = [3,64,12,654,8,54,22,87,6,5,1,34,7,4]) -> None:
 
 def strdef(inputstr: str = " abcde ABCDE 12345 #%& catdogR") -> None:
     print(f"""\n
-    basic {inputstr}
+    {inputstr}
     - immutable
     - non-hashable
-    - non-orderable
     - iterable
     - non-numeric
     - sequence
+    - subscriptable
     [5] {inputstr[5]}
     [5:] {inputstr[5:]}
     [:5] {inputstr[:5]}
@@ -67,4 +67,20 @@ def strdef(inputstr: str = " abcde ABCDE 12345 #%& catdogR") -> None:
     .isalnum() {inputstr.isalnum()}
     .isalpha() {inputstr.isalpha()}
     .isdigit() {inputstr.isdigit()}\n
+""")
+
+
+def intdef(inputint: int = 255) -> None:
+    print(f"""
+    {inputint}
+    - numeric
+    - immutable
+    - non-sequence
+    - non-subscriptable
+    - non-iterable
+    - signed vs unsigned
+    - arbitrary vs non-arbitrary precision
+    .bit_length() {inputint.bit_length()}
+    .to_bytes(2, byteorder='big') {inputint.to_bytes(2, byteorder='big')}
+    
 """)
