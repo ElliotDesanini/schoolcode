@@ -1,0 +1,27 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(30deg, rgb(137, 182, 191) 0%, rgb(129, 172, 196) 40%, rgb(11, 22, 125) 100%);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 1.2em;
+  padding: 0.75em 1.5em;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}

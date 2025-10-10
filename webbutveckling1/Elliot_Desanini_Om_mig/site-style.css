@@ -92,27 +92,39 @@ a:hover {
 }
 
 section {
-  scroll-margin-top: 16vh;
+  scroll-margin-top: 23vh;
+  margin-bottom: 10vh;
+}
+
+.img {
+  height: auto;
+  display: block;
+  position: absolute;
+  max-width: 80vw;
+  border: 1vh dashed black;
+  border-radius: 5%;
 }
 
 .friends {
   width: 18vw;
-  height: auto;
-  display: block;
-  position: absolute;
-  left: 56vw;
-  top: 84%;
-  border: 1vh dashed black;
-  border-radius: 5%;
+  left: 60vw;
+  top: 134%;
 }
 
 .ava {
-  width: 15vw;
-  height: auto;
-  display: block;
-  position: absolute;
-  left: 70vw;
+  width: 8vw;
+  left: 84vw;
   top: 140%;
-  border: 1vh dashed black;
-  border-radius: 5%;
+}
+
+.bianca {
+  width: 16vw;
+  left: 68vw;
+  top: 70%;
+}
+
+.pride-elliot {
+  width: 10vw;
+  left: 62vw;
+  top: 18%;
 }
