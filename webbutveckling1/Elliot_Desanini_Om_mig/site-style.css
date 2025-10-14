@@ -11,7 +11,7 @@ html {
   background-color: blanchedalmond;
   padding-left: 3%;
   align-items: center;
-  gap: 8%;
+  gap: 5%;
 }
 
 .fixed-header {
@@ -51,7 +51,8 @@ h1 {
 }
 
 ul {
-  gap: 10vw;   
+  gap: 20%;
+  max-width: 80%;
 }
 
 .jumps {
@@ -63,7 +64,7 @@ ul {
 
 li {
   background-color: rgb(199, 215, 209);
-  padding: 1vh;
+  padding: 4px;
   border: 2px double rgb(58, 75, 69);
 }
 
@@ -73,11 +74,12 @@ p, h1, h2, a {
 
 h2 {
   padding-left: 3vw;
+  font-size: 5vh;
 }
 
 p {
   max-width: 50vw;
-  font-size: 100%;
+  font-size: 3vh;
   padding-left: 4vw;
 }
 
@@ -85,6 +87,7 @@ a {
   text-decoration: none;
   color: white;
   -webkit-text-stroke: 1px black;
+  font-size: 3vh;
 }
 
 a:hover {
@@ -96,7 +99,7 @@ section {
   margin-bottom: 10vh;
 }
 
-.img {
+#me img, #family img, #school img, #interests img {
   height: auto;
   display: block;
   position: absolute;
@@ -105,26 +108,38 @@ section {
   border-radius: 5%;
 }
 
-.friends {
-  width: 18vw;
-  left: 60vw;
-  top: 134%;
+#me, #family, #school, #interests {
+  position: relative;
 }
 
-.ava {
-  width: 8vw;
-  left: 84vw;
-  top: 140%;
+#me img {
+  position: absolute;
+  width: auto;
+  height: 70%;
+  top: 10%;
+  right: 20%
 }
 
-.bianca {
-  width: 16vw;
-  left: 68vw;
-  top: 70%;
+#family img {
+  position: absolute;
+  width: auto;
+  height: 60%;
+  top: 15%;
+  right: 10%
 }
 
-.pride-elliot {
-  width: 10vw;
-  left: 62vw;
-  top: 18%;
+#school .friends{
+  position: absolute;
+  width: auto;
+  height: 50%;
+  top: 30%;
+  right: 25%
+}
+
+#school .ava{
+  position: absolute;
+  width: auto;
+  height: 40%;
+  top: 10%;
+  right: 5%;
 }
