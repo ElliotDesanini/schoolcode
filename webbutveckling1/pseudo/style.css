@@ -1,0 +1,24 @@
+body {
+    background-color: whitesmoke;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li:first-child {
+    background-color: green;
+}
+
+/*li:last-child {
+    color:blueviolet;
+    background-color: aquamarine;
+} */
+
+li:nth-child(even)::first-letter {
+    font-size: 2em;
+}
+
+li:hover {
+    background-color: aqua;
+}

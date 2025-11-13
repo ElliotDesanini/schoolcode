@@ -17,6 +17,9 @@ feedback12, feedback11, feedback10, feedback9, feedback8, feedback7 = "", "", ""
 feedback6, feedback5, feedback4, feedback3, feedback2, feedback1 = "", "", "", "", "", ""
 
 seperation: int = 18
+guess_count: int = 0
+
+game_on: bool = True
 
 table: str = f"""
 gissning# {"gissning":^10} feedback
@@ -54,8 +57,37 @@ while True:
     if len(numbers) == 4:
         break
 
-while True:
-    print(table)
+while game_on:
+    #print(table)
     guess = input(f"vad tror du siffrorna är? (separera siffror med ' ') > ")
-    guess = guess.split(" ")
-
+    guess = guess.split()
+    print(guess)
+    if not(len(guess) == 4):
+        print("det behöver vara 4 siffror separerade med ' ' (mellanrum) ")
+    else:
+        guess_count += 1
+        match guess_count:
+            case 1:
+                gissning1 = " ".join(guess)
+            case 2:
+                gissning2 = " ".join(guess)
+            case 3:
+                gissning3 = " ".join(guess)
+            case 4:
+                gissning4 = " ".join(guess)
+            case 5:
+                gissning5 = " ".join(guess)
+            case 6:
+                gissning6 = " ".join(guess)
+            case 7:
+                gissning7 = " ".join(guess)
+            case 8:
+                gissning8 = " ".join(guess)
+            case 9:
+                gissning9 = " ".join(guess)
+            case 10:
+                gissning10 = " ".join(guess)
+            case 11:
+                gissning11 = " ".join(guess)
+            case 12:
+                gissning12 = " ".join(guess)

@@ -1,0 +1,26 @@
+.debug * {
+    border: 1px solid black !important;
+}
+
+body * {
+    color: rgb(14, 128, 177);
+    background-color: whitesmoke;
+}
+
+div:not(.container) {
+    margin-bottom: 4vh;
+}
+
+.container {
+    box-sizing: border-box;
+    text-align: center;
+    margin-left: 50%;
+    margin-top: 10%;
+    transform: translateX(-50%);
+    width: 500px;
+    aspect-ratio: 1.25 / 1;
+    background-color: rgb(234, 234, 234);
+    border: 5px solid rgb(234, 234, 234);
+    border-radius: 2%;
+    box-shadow: 0px 0px 8px 1px gray;
+}
