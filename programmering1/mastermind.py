@@ -8,13 +8,11 @@
 
 import random
 
+guess1, guess2, guess3, guess4, guess5, guess6, guess7, guess8, guess9, guess10, guess11, guess12 = "", "", "", "", "", "", "", "", "", "", "", ""
+guesses_list: list = [guess1, guess2, guess3, guess4, guess5, guess6, guess7, guess8, guess9, guess10, guess11, guess12]
 
-
-gissning12, gissning11, gissning10, gissning9, gissning8, gissning7 = "", "", "", "", "", ""
-gissning6, gissning5, gissning4, gissning3, gissning2, gissning1 = "", "", "", "", "", ""
-
-feedback12, feedback11, feedback10, feedback9, feedback8, feedback7 = "", "", "", "", "", ""
-feedback6, feedback5, feedback4, feedback3, feedback2, feedback1 = "", "", "", "", "", ""
+feedback1, feedback2, feedback3, feedback4, feedback5, feedback6, feedback7, feedback8, feedback9, feedback10, feedback11, feedback12 = "", "", "", "", "", "", "", "", "", "", "", ""
+feedback_list: list = [feedback1, feedback2, feedback3, feedback4, feedback5, feedback6, feedback7, feedback8, feedback9, feedback10, feedback11, feedback12]
 
 seperation: int = 18
 guess_count: int = 0
@@ -23,38 +21,38 @@ game_on: bool = True
 
 table: str = f"""
 gissning# {"gissning":^10} feedback
-12 {gissning12:^{seperation}} {feedback12}
-11 {gissning11:^{seperation}} {feedback11}
-10 {gissning10:^{seperation}} {feedback10}
- 9 {gissning9:^{seperation}} {feedback9}
- 8 {gissning8:^{seperation}} {feedback8}
- 7 {gissning7:^{seperation}} {feedback7}
- 6 {gissning6:^{seperation}} {feedback6}
- 5 {gissning5:^{seperation}} {feedback5}
- 4 {gissning4:^{seperation}} {feedback4}
- 3 {gissning3:^{seperation}} {feedback3}
- 2 {gissning2:^{seperation}} {feedback2}
- 1 {gissning1:^{seperation}} {feedback1}
+12 {guess12:^{seperation}} {feedback12}
+11 {guess11:^{seperation}} {feedback11}
+10 {guess10:^{seperation}} {feedback10}
+ 9 {guess9:^{seperation}} {feedback9}
+ 8 {guess8:^{seperation}} {feedback8}
+ 7 {guess7:^{seperation}} {feedback7}
+ 6 {guess6:^{seperation}} {feedback6}
+ 5 {guess5:^{seperation}} {feedback5}
+ 4 {guess4:^{seperation}} {feedback4}
+ 3 {guess3:^{seperation}} {feedback3}
+ 2 {guess2:^{seperation}} {feedback2}
+ 1 {guess1:^{seperation}} {feedback1}
 """
 last_table: str = table
 
 numbers: list = []
 
-def update_table():
+def update_table(list_of_guesses: list, list_of_feedback: list, seperation: int):
      table: str = f"""
 gissning# {"gissning":^10} feedback
-12 {gissning12:^{seperation}} {feedback12}
-11 {gissning11:^{seperation}} {feedback11}
-10 {gissning10:^{seperation}} {feedback10}
- 9 {gissning9:^{seperation}} {feedback9}
- 8 {gissning8:^{seperation}} {feedback8}
- 7 {gissning7:^{seperation}} {feedback7}
- 6 {gissning6:^{seperation}} {feedback6}
- 5 {gissning5:^{seperation}} {feedback5}
- 4 {gissning4:^{seperation}} {feedback4}
- 3 {gissning3:^{seperation}} {feedback3}
- 2 {gissning2:^{seperation}} {feedback2}
- 1 {gissning1:^{seperation}} {feedback1}
+12 {list_of_guesses[11]:^{seperation}} {list_of_feedback[11]}
+11 {list_of_guesses[10]:^{seperation}} {list_of_feedback[10]}
+10 {list_of_guesses[19]:^{seperation}} {list_of_feedback[9]}
+ 9 {list_of_guesses[8]:^{seperation}} {list_of_feedback[8]}
+ 8 {list_of_guesses[7]:^{seperation}} {list_of_feedback[7]}
+ 7 {list_of_guesses[6]:^{seperation}} {list_of_feedback[6]}
+ 6 {list_of_guesses[5]:^{seperation}} {list_of_feedback[5]}
+ 5 {list_of_guesses[4]:^{seperation}} {list_of_feedback[4]}
+ 4 {list_of_guesses[3]:^{seperation}} {list_of_feedback[3]}
+ 3 {list_of_guesses[2]:^{seperation}} {list_of_feedback[2]}
+ 2 {list_of_guesses[1]:^{seperation}} {list_of_feedback[1]}
+ 1 {list_of_guesses[0]:^{seperation}} {list_of_feedback[0]}
 """
 
 while True:
@@ -68,50 +66,35 @@ while True:
     else:
         print("Jag fattade inte det där.")
 
-while True:
-    added_number: int = random.randint(1,6)
-    if not (easy == True and (added_number in numbers)):
-        numbers.append(added_number)
-    if len(numbers) == 4:
-        break
+def number_gen():
+    while True:
+        added_number: int = random.randint(1,6)
+        if not (easy and (added_number in numbers)):
+            numbers.append(added_number)
+        if len(numbers) == 4:
+            return numbers
 
+secret_numbers: list = number_gen()
 
 while game_on:
     if last_table != table:
         print(table)
-
+    
     guess = input(f"vad tror du siffrorna är? (separera siffror med ' ') > ")
     guess = guess.split()
-    print(guess)
-    if not(len(guess) == 4 and all(item in ["0","1","2","3","4","5","6","7","8","9"] for item in guess)):
-        print("det behöver vara 4 siffror separerade med ' ' (mellanrum) ")
+
+    if not(len(guess) == 4 and all(item in ["1","2","3","4","5","6"] for item in guess)):
+        print("det behöver vara 4 siffror (1-6) separerade med ' ' (mellanrum) ")
 
     else:
+        for item in guess:
+            guess[guess.index(item)] = int(item)
+        guesses_list[guess_count] = [str(item) for item in guess]
         guess_count += 1
-        match guess_count:
-            case 1:
-                gissning1 = " ".join(guess)
-            case 2:
-                gissning2 = " ".join(guess)
-            case 3:
-                gissning3 = " ".join(guess)
-            case 4:
-                gissning4 = " ".join(guess)
-            case 5:
-                gissning5 = " ".join(guess)
-            case 6:
-                gissning6 = " ".join(guess)
-            case 7:
-                gissning7 = " ".join(guess)
-            case 8:
-                gissning8 = " ".join(guess)
-            case 9:
-                gissning9 = " ".join(guess)
-            case 10:
-                gissning10 = " ".join(guess)
-            case 11:
-                gissning11 = " ".join(guess)
-            case 12:
-                gissning12 = " ".join(guess)
-                
-        update_table()
+        feedback = []
+        for right_element in secret_numbers:
+            for guess_element in guess:
+                if not (guess_element == right_element):
+                    pass
+    
+
