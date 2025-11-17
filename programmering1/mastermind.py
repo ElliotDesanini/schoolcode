@@ -36,8 +36,26 @@ gissning# {"gissning":^10} feedback
  2 {gissning2:^{seperation}} {feedback2}
  1 {gissning1:^{seperation}} {feedback1}
 """
+last_table: str = table
 
 numbers: list = []
+
+def update_table():
+     table: str = f"""
+gissning# {"gissning":^10} feedback
+12 {gissning12:^{seperation}} {feedback12}
+11 {gissning11:^{seperation}} {feedback11}
+10 {gissning10:^{seperation}} {feedback10}
+ 9 {gissning9:^{seperation}} {feedback9}
+ 8 {gissning8:^{seperation}} {feedback8}
+ 7 {gissning7:^{seperation}} {feedback7}
+ 6 {gissning6:^{seperation}} {feedback6}
+ 5 {gissning5:^{seperation}} {feedback5}
+ 4 {gissning4:^{seperation}} {feedback4}
+ 3 {gissning3:^{seperation}} {feedback3}
+ 2 {gissning2:^{seperation}} {feedback2}
+ 1 {gissning1:^{seperation}} {feedback1}
+"""
 
 while True:
     diff_answer = input("välj svårighet, lättare (1) eller svårare (2) > ")
@@ -57,13 +75,17 @@ while True:
     if len(numbers) == 4:
         break
 
+
 while game_on:
-    #print(table)
+    if last_table != table:
+        print(table)
+
     guess = input(f"vad tror du siffrorna är? (separera siffror med ' ') > ")
     guess = guess.split()
     print(guess)
-    if not(len(guess) == 4):
+    if not(len(guess) == 4 and all(item in ["0","1","2","3","4","5","6","7","8","9"] for item in guess)):
         print("det behöver vara 4 siffror separerade med ' ' (mellanrum) ")
+
     else:
         guess_count += 1
         match guess_count:
@@ -91,3 +113,5 @@ while game_on:
                 gissning11 = " ".join(guess)
             case 12:
                 gissning12 = " ".join(guess)
+                
+        update_table()
