@@ -34,6 +34,7 @@ gissning# {"gissning":^10} feedback
  2 {guess2:^{seperation}} {feedback2}
  1 {guess1:^{seperation}} {feedback1}
 """
+
 last_table: str = table
 
 numbers: list = []
@@ -41,32 +42,34 @@ numbers: list = []
 def update_table(list_of_guesses: list, list_of_feedback: list, seperation: int):
      table: str = f"""
 gissning# {"gissning":^10} feedback
-12 {list_of_guesses[11]:^{seperation}} {list_of_feedback[11]}
-11 {list_of_guesses[10]:^{seperation}} {list_of_feedback[10]}
-10 {list_of_guesses[19]:^{seperation}} {list_of_feedback[9]}
- 9 {list_of_guesses[8]:^{seperation}} {list_of_feedback[8]}
- 8 {list_of_guesses[7]:^{seperation}} {list_of_feedback[7]}
- 7 {list_of_guesses[6]:^{seperation}} {list_of_feedback[6]}
- 6 {list_of_guesses[5]:^{seperation}} {list_of_feedback[5]}
- 5 {list_of_guesses[4]:^{seperation}} {list_of_feedback[4]}
- 4 {list_of_guesses[3]:^{seperation}} {list_of_feedback[3]}
- 3 {list_of_guesses[2]:^{seperation}} {list_of_feedback[2]}
- 2 {list_of_guesses[1]:^{seperation}} {list_of_feedback[1]}
- 1 {list_of_guesses[0]:^{seperation}} {list_of_feedback[0]}
+12 {str(list_of_guesses[11]):^{seperation}} {list_of_feedback[11]}
+11 {str(list_of_guesses[10]):^{seperation}} {list_of_feedback[10]}
+10 {str(list_of_guesses[9]):^{seperation}} {list_of_feedback[9]}
+ 9 {str(list_of_guesses[8]):^{seperation}} {list_of_feedback[8]}
+ 8 {str(list_of_guesses[7]):^{seperation}} {list_of_feedback[7]}
+ 7 {str(list_of_guesses[6]):^{seperation}} {list_of_feedback[6]}
+ 6 {str(list_of_guesses[5]):^{seperation}} {list_of_feedback[5]}
+ 5 {str(list_of_guesses[4]):^{seperation}} {list_of_feedback[4]}
+ 4 {str(list_of_guesses[3]):^{seperation}} {list_of_feedback[3]}
+ 3 {str(list_of_guesses[2]):^{seperation}} {list_of_feedback[2]}
+ 2 {str(list_of_guesses[1]):^{seperation}} {list_of_feedback[1]}
+ 1 {str(list_of_guesses[0]):^{seperation}} {list_of_feedback[0]}
 """
+     return table
 
-while True:
+
+while True: #kollar vilken svårighet användaren vill ha
     diff_answer = input("välj svårighet, lättare (1) eller svårare (2) > ")
     if diff_answer in ["1","2"]:
         if diff_answer == "1":
-            easy = False
-        else:
             easy = True
+        else:
+            easy = False
         break
     else:
         print("Jag fattade inte det där.")
 
-def number_gen():
+def number_gen(): # skapar en lista av 4 hemliga siffror mellan 1 och 6
     while True:
         added_number: int = random.randint(1,6)
         if not (easy and (added_number in numbers)):
@@ -74,12 +77,34 @@ def number_gen():
         if len(numbers) == 4:
             return numbers
 
+def feedbacker(guess, correct_guess): # matchar gissning med svar och ger feedback
+    feedback = [" ", " ", " ", " "]
+    guess_after = []
+    correct_after = []
+
+    for index in range(4): #är det helt korrect? (R)
+        if guess[index] == correct_guess[index]:
+            feedback[index] = "R"
+        else: #sparar det som inte är helt korrect
+            guess_after.append(guess[index])
+            correct_after.append(correct_guess[index])
+    
+    for index in range(4): #om inte helt rätt, kollar om delvis rätt
+        if feedback[index] == " ":
+            if guess[index] in correct_after:
+                feedback[index] = "X"
+                correct_after.remove[{guess[index]}]
+    
+    return feedback
+
 secret_numbers: list = number_gen()
 
 while game_on:
-    if last_table != table:
+    if table != last_table: 
         print(table)
-    
+
+    last_table = table
+
     guess = input(f"vad tror du siffrorna är? (separera siffror med ' ') > ")
     guess = guess.split()
 
@@ -90,16 +115,14 @@ while game_on:
         for item in guess:
             guess[guess.index(item)] = int(item)
         guesses_list[guess_count] = [str(item) for item in guess]
-        guess_count += 1
         feedback = [" ", " ", " ", " "]
-        for right_element in secret_numbers:
-            for guess_element in guess:
-                if (guess_element == right_element):
-                    if guess.index(guess_element) == secret_numbers.index(right_element):
-                        feedback[guess.index(guess_element)] = "R"
-                    else:
-                        if feedback[guess.index(guess_element)] != "R":
-                            feedback[guess.index(guess_element)] = "X"
-        feedback_list.append(feedback)
-        guesses_list.append(guess)
-        update_table(guesses_list, feedback_list, )
+
+        feedback = feedbacker(guess, secret_numbers)
+
+        feedback_list[guess_count] = feedback
+        guesses_list[guess_count] = guess
+        if feedback == ["R", "R", "R", "R"]:
+            game_on = False
+            print(f"\nBra gjort! Det är korrekt, {guess} är mina hämliga siffor!\n")
+        guess_count += 1
+        table = update_table(guesses_list, feedback_list, 18)

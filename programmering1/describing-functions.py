@@ -84,3 +84,5 @@ def intdef(inputint: int = 255) -> None:
     .to_bytes(2, byteorder='big') {inputint.to_bytes(2, byteorder='big')}
     
 """)
+
+listdef()
