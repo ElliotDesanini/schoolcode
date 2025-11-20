@@ -1,0 +1,126 @@
+.container {
+    background: #213238;
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    height: 580px;
+    background: linear-gradient(180deg,rgba(33, 50, 56, 1) 0%, rgba(88, 102, 94, 1) 85%, rgba(255, 255, 255, 1) 100%);
+}
+
+.flake {
+    width: 40px;
+    height: 40px;
+    transform: translate(20px, -20px);
+    color: whitesmoke;
+}
+
+.snow1_1 {
+    animation-name: snow1;
+    animation-duration: 12s;
+    animation-iteration-count: infinite;
+    animation-delay: 2s;
+}
+
+.snow1_2 {
+    animation-name: snow1;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-delay: 3s;
+}
+
+.snow1_3 {
+    animation-name: snow1;
+    animation-duration: 16s;
+    animation-iteration-count: infinite;
+    animation-delay: 1s;
+}
+
+.snow1_4 {
+    animation-name: snow1;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-delay: 1s;
+}
+
+.snow1_5 {
+    animation-name: snow1;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-delay: 2s;
+}
+
+.snow2_1 {
+    animation-name: snow2;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+    animation-delay: 3s;
+}
+
+.snow2_2 {
+    animation-name: snow2;
+    animation-duration: 11s;
+    animation-iteration-count: infinite;
+    animation-delay: 2s;
+}
+
+.snow2_3 {
+    animation-name: snow2;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-delay: 5s;
+}
+
+.snow3_1 {
+    animation-name: snow3;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-delay: 2s;
+}
+
+@keyframes snow1 {
+    0% {
+        transform: translate(20px, -20px);
+    }
+    30% {
+        transform: translate(34px, 180px);
+    }
+    50% {
+        transform: translate(23px, 260px);
+    }
+    100% {
+        transform: translate(60px, 570px);
+    }
+}
+
+@keyframes snow2 {
+    0% {
+        transform: translate(70px, -20px);
+    }
+    30% {
+        transform: translate(80px, 120px);
+    }
+    50% {
+        transform: translate(60px, 370px);
+    }
+    100% {
+        transform: translate(40px, 570px);
+    }
+}
+
+@keyframes snow3 {
+    0% {
+        transform: translate(50px, -20px);
+    }
+    30% {
+        transform: translate(120px, 80px);
+    }
+    50% {
+        transform: translate(40px, 140px);
+    }
+    75% {
+        transform: translate(180px, 340px);
+    }
+    100% {
+        transform: translate(70px, 570px);
+    }
+}

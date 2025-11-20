@@ -1,0 +1,15 @@
+
+.demo {
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    border: none;
+    margin: 100px;
+    transition: border-radius 6s ease-out, background-color 6s ease-in;
+}
+
+.demo:hover {
+    transition: border-radius 1s ease-out, background-color 1s ease-out;
+    border-radius: 30%;
+    background-color: blue;
+}

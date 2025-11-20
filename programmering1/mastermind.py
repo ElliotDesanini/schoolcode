@@ -91,10 +91,15 @@ while game_on:
             guess[guess.index(item)] = int(item)
         guesses_list[guess_count] = [str(item) for item in guess]
         guess_count += 1
-        feedback = []
+        feedback = [" ", " ", " ", " "]
         for right_element in secret_numbers:
             for guess_element in guess:
-                if not (guess_element == right_element):
-                    pass
-    
-
+                if (guess_element == right_element):
+                    if guess.index(guess_element) == secret_numbers.index(right_element):
+                        feedback[guess.index(guess_element)] = "R"
+                    else:
+                        if feedback[guess.index(guess_element)] != "R":
+                            feedback[guess.index(guess_element)] = "X"
+        feedback_list.append(feedback)
+        guesses_list.append(guess)
+        update_table(guesses_list, feedback_list, )
