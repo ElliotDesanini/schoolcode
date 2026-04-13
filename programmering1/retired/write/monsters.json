@@ -1,0 +1,26 @@
+{
+    "goblin": {
+        "id": "goblin",
+        "strength": 1,
+        "dexterity": 1,
+        "constitution": 1
+    },
+    "slime": {
+        "id": "slime",
+        "strength": 2,
+        "dexterity": 2,
+        "constitution": 2
+    },
+    "catasore": {
+        "id": "catasore",
+        "strength": 1,
+        "dexterity": 3.2,
+        "constitution": 3.4
+    },
+    "Minotaur": {
+        "id": "Minotaur",
+        "strength": "20",
+        "dexterity": "4",
+        "constitution": "14"
+    }
+}

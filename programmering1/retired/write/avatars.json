@@ -1,0 +1,20 @@
+{
+    "james": {
+        "id": "james",
+        "strength": 1,
+        "dexterity": 2,
+        "constitution": 4
+    },
+    "karl": {
+        "id": "karl",
+        "strength": 8,
+        "dexterity": 3,
+        "constitution": 2
+    },
+    "elsa": {
+        "id": "elsa",
+        "strength": 3,
+        "dexterity": 12,
+        "constitution": 0.2
+    }
+}

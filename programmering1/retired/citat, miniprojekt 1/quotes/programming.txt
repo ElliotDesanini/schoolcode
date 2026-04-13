@@ -1,0 +1,10 @@
+Programs must be written for people to read, and only incidentally for machines to execute. - Harold Abelson
+Talk is cheap. Show me the code. - Linus Torvalds
+Any fool can write code that a computer can understand. Good programmers write code that humans can understand. - Martin Fowler
+First, solve the problem. Then, write the code. - John Johnson
+Experience is the name everyone gives to their mistakes. - Oscar Wilde
+In order to be irreplaceable, one must always be different. - Coco Chanel
+Java is to JavaScript what car is to Carpet. - Chris Heilmann
+Before software can be reusable it first has to be usable. - Ralph Johnson
+Make it work, make it right, make it fast. - Kent Beck
+Code is like humor. When you have to explain it, it’s bad. - Cory House

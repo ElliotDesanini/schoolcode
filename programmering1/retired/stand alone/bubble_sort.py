@@ -1,3 +1,5 @@
+import time, random
+
 def swap(input_list: list, index_1: int, index_2: int) -> list:
     # ta en lista och 2 index, byter plats på elemented med dessa index.
 
@@ -19,13 +21,7 @@ def swap(input_list: list, index_1: int, index_2: int) -> list:
     return swaped_list
     
 
-
-
-def sorting(lst: list) -> list:
-    # ta en lista av nummer, returnera en listan sorterad, mist till högst. 
-    # use bubble sort.
-
-    # validate input
+def list_validation(lst: list):
     if type(lst) != list:
         raise TypeError("the argument must be a list.")
     if len(lst) < 2:
@@ -33,7 +29,16 @@ def sorting(lst: list) -> list:
     for element in lst:
         if type(element) not in [int, float]:
             raise TypeError("All elements in the list must be integers or floats.")
-    
+
+
+
+def sorting(lst: list) -> list:
+    # ta en lista av nummer, returnera en listan sorterad, mist till högst. 
+    # use bubble sort.
+
+    # validate input
+    list_validation(lst)
+
     # sort
     assesment_point = 0 # the index of the first element of the 2 elements being compaired
     end_point = len(lst) # index element where after we know they are in the right order
@@ -61,13 +66,7 @@ def is_sorted(input_list: list) -> bool:
     # ta en lista, om == sorterad lista returnera True, annars False
     
     # validate input
-    if type(input_list) != list:
-        raise TypeError("the argument must be a list.")
-    if len(input_list) < 2:
-        raise Exception("The list must have at least 2 elements.")
-    for element in input_list:
-        if type(element) not in [int, float]:
-            raise TypeError("All elements in the list must be integers or floats.")
+    list_validation(input_list)
     
     # check if list is sorted
     if input_list == sorting(input_list.copy()):
@@ -76,12 +75,62 @@ def is_sorted(input_list: list) -> bool:
         return False
 
 
+def custom_sort(lst: list) -> list:
+    even_part: list = []
+    odd_part: list = []
+    decimal_part: list = []
+
+    list_validation(lst)
+
+    for item in lst:
+        if item%2 == 0:
+            even_part.append(item)
+        elif item%2 == 1:
+            odd_part.append(item)
+        else:
+            decimal_part.append(item)
+    
+    lst = []
+
+    for part in [even_part, odd_part, decimal_part]:
+        if len(part) > 2:
+            sorting(part)
+            lst.extend(part)
+
+    return lst
 
 
 
-test_list: list = [1, 2.4, 3, 4, 3, 4, 5, 8, 5.32, 3, 1, 2.5, 145, 1, 32, 3.24]
-sorted_list: list = [1,1.1,2,2.9,3,4,5,6,7,8,9,10]
+test_list = []
 
-print(sorting(test_list))
-print(is_sorted(sorted_list))
-print(is_sorted([2,3,1]))
+i = 0
+element_num_list = []
+
+for element_number in range(1000, 1801, 200):
+    element_num_list.append(element_number)
+
+for element_index in range(0, len(element_num_list)):
+    i = 0
+    test_list = []
+    while i < element_num_list[element_index]:
+        test_list.append(random.randint(-1000, 1000))
+        i += 1
+
+
+    start_time = time.perf_counter()
+
+    sorted_list = sorting(test_list)
+
+    end_time = time.perf_counter()
+
+    time_taken = end_time - start_time
+
+    sort_start = time.perf_counter()
+
+    test_list.sort()
+
+    sort_end = time.perf_counter()
+
+    sort_time = sort_end - sort_start
+
+    print(f"it took: {time_taken} (my sotring) vs {sort_time} (.sort) \n length: {element_num_list[element_index]} \n")
