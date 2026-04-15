@@ -4,7 +4,7 @@ Ett spel där användaren gissar ett slumpmässigt tal.
 Highscore sparas i JSON-format.
 
 top 5
-easy, medium, hard, very hard, extremely hard
+easy, medium, hard
 
 object:
 {
@@ -26,7 +26,10 @@ def ladda_highscore(filnamn:str="highscore.json") -> list:
         return []
     
     with open(filnamn, "r", encoding="utf-8") as file:
-        data = json.load(file)
+        try:
+            data = json.load(file)
+        except Exception:
+            data = []
         return data
 
 
@@ -36,16 +39,62 @@ def spara_highscore(highscore_lista:list, filnamn:str="highscore.json"):
         return []
     
     with open(filnamn, "w", encoding="utf-8") as file:
-        data = json.dump(highscore_lista, indent=4, ensure_ascii=False)
-        file.write(data)
+        json.dump(highscore_lista, file, indent=4, ensure_ascii=False)
 
+
+def add_highscore(highscore:dict, filename:str="highscore.json"):
+    data = ladda_highscore(filename)
+    data.append(highscore)
+    spara_highscore(data, filename)
+
+def sortera_highscore(highscore_lista:list) -> list:
+    sorted(highscore_lista, key=lambda element: element["gissningar"], reverse=True)
+    return highscore_lista
+
+
+def choose_difficulty(difficulties:list=["easy", "medium", "hard"]) -> str:
+    while True:
+        print("    choose a difficulty from the following:")
+        print("write the name of the difficulty you want")
+        for element in difficulties:
+            print(f"{element}")
+        
+        choice = input("> ").strip().lower()
+
+        for element in difficulties:
+            if choice == element:
+                return choice
+            
+        if choice not in difficulties:
+            print("that is not a possible difficulty")
 
 # === SPELMECKANIK ===
 
-def spela_omgang():
-    menu:str = """
+def spela_omgang(hidden_number_range:int=100):
+    hidden_number = random.randint(1, hidden_number_range)
+    guesses = 0
 
-"""
+    while True:
+        print(f"\ncurrent guesses made: {guesses}")
+        print("what number do u think it is?")
+        try:
+            guessed_number = int(input(" >").strip())
+        except Exception:
+            print("that is not a valid input.")
+    
+        if guessed_number == hidden_number:
+            guesses += 1
+            print(f"that is correct, you guessed correctly after {guesses} guesses!")
+            return guesses
+        
+        elif guessed_number < hidden_number:
+            guesses += 1
+            print(f"{guessed_number} is too low")
+        
+        else:
+            guesses += 1
+            print(f"{guessed_number} is too high")
+    
 
 
 
@@ -83,6 +132,58 @@ def visa_highscore(highscore_lista):
 # === HUVUDPROGRAM ===
 
 def huvudprogram():
+    commands:list = ["see top 5 scores", "START GAME", "see all high scores", "quit"]
+
+    menu_text:str = f"""
+            High Low
+    i will pick a number, and you will guess it.
+    the following are the menu options, input a number related to an action to continue.
+
+"""
+    for element in commands:
+        menu_text += f"\n            {commands.index(element)}. {element}"
+
+    game_on:bool = True
+
+    difficulty_decider:dict = {
+        "easy": 128,
+        "medium": 258,
+        "hard": 512
+    }
+
+    while game_on:
+        print(menu_text)
+        command = input("> ").strip()
+
+        match command:
+            case "0":
+                highscore = ladda_highscore()
+                for element in sortera_highscore(highscore)[:5]:
+                    print(f"namn: {element["namn"]}; gissningar: {element["gissningar"]}")
+                
+            case "1":
+                print("GAME STARTED!")
+                difficulty = choose_difficulty(list(difficulty_decider.keys()))
+                number_range = difficulty_decider[difficulty]
+                guesses = spela_omgang(number_range)
+
+                name_score = input("what would you like to be called?\n> ")
+
+                highscore = {"namn": name_score, "gissningar": guesses}
+                add_highscore(highscore)
+
+            case "2":
+                highscore = ladda_highscore()
+                for element in sortera_highscore(highscore):
+                    print(f"namn: {element["namn"]}; gissningar: {element["gissningar"]}")
+            
+            case "3":
+                game_on = False
+                print("have a good day.")
+            
+            case _:
+                print("that is not a valid input")
+
     """
     Huvudprogrammet som styr menyn och programflödet.
     """
