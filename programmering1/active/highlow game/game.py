@@ -135,8 +135,6 @@ def huvudprogram():
     commands:list = ["see top 5 scores", "START GAME", "see all high scores", "quit"]
 
     menu_text:str = f"""
-            High Low
-    i will pick a number, and you will guess it.
     the following are the menu options, input a number related to an action to continue.
 
 """
@@ -150,6 +148,8 @@ def huvudprogram():
         "medium": 258,
         "hard": 512
     }
+
+    print("High Low \ni will pick a number, and you will guess it.")
 
     while game_on:
         print(menu_text)
