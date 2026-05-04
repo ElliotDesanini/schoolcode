@@ -82,6 +82,7 @@ def huvudprogram():
 
     sidoval = ["5", "10", "15", "20", "30", "40", "50", "100"]
     fargval = ["red", "blue", "yellow", "green"]
+    hållval = ["left", "right", "forward", "backward"]
 
     t.speed(get_speed(speeds))
     
@@ -91,7 +92,9 @@ def huvudprogram():
         2. Rita triangel
         3. Rita cirkel
         4. Rita blomma
-        5. Avsluta""")
+        5. Sudda allt
+        6. Gå fram/bak/vänster/höger
+        7. Avsluta""")
         
         val = input("Valj: ")
         
@@ -115,9 +118,30 @@ def huvudprogram():
             farg = ask_something("color", fargval)
             kronblad = int(ask_something("number of leaves", sidoval))
             rita_blomma(t, kronblad, sida, farg)
+
         elif val == "5":
+            turtle.clear()
+
+        elif val == "6":
+            håll = ask_something("direction", hållval)
+            walk = int(ask_something("len of walk",sidoval))
+
+            if håll == "forward":
+                t.forward(walk)
+            elif håll == "backward":
+                t.left(180)
+                t.forward(walk)
+            elif håll == "left":
+                t.left(90)
+                t.forward(walk)
+            elif håll == "right":
+                t.right(90)
+                t.forward(walk)
+        
+        elif val == "7":
             turtle.done()
             break
+
         else:
             print("Ogiltigt val, forsok igen.")
 
