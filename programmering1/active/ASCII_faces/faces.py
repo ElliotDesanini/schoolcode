@@ -3,14 +3,15 @@ Projekt 4: ASCII-ansikten
 Ett interaktivt program där användaren kan skapa, klustra och slumpa ASCII-ansikten.
 """
 
-import random
+import random, json
 
 
 # === FUNKTIONER FÖR ANSIKTEN ===
 
 eyes = ["o", "-", "^", "x", "T", ">", "@"]
 mouths = ["_", "o", "^", "x", "T"]
-cheeks = ["()", "[]", "\{\}", "<>"]
+cheeks = ["()", "[]", "{}", "<>"]
+json_url = "faces.json"
 
 def skapa_ansikte(ogon: str, mun: str, ram: str):
     if ogon not in eyes:
@@ -58,50 +59,84 @@ def skriv_ut_slumpkluster(bredd, hojd):
         print("")
 
 
+def ask_something(subject, options: list):
+    while True:
+        print(f"you are picking the {subject}")
+        print("these are your options, pick one: (pick by writing the option)")
+        for option in options:
+            print(option)
+        
+        pick = input("> ").lower()
+
+        if pick in options: #type: ignore
+            return pick
+        else:
+            print(f"that ({pick}) is not an option")
+
+
+def width_and_height():
+    print("what width do you want?")
+    asking = True
+    while asking:
+        choice = input("> ")
+        try:
+            width = abs(int(choice))
+            asking = False
+        except ValueError:
+            print("that is not an option, you must choose an integer")
+    
+    print("what height do you want?")
+    asking = True
+    while asking:
+        choice = input("> ")
+        try:
+            height = abs(int(choice))
+            asking = False
+        except ValueError:
+            print("that is not an option, you must choose an integer")
+    
+    return [width, height]
+
 # === MENYFUNKTIONER ===
 
 
 def skapa_eget_ansikte():
-    """
-    Låter användaren designa ett eget ansikte genom menyval.
-    Skriver ut resultatet.
-    """
-    # TODO: Implementera funktionen
-    # 1. Visa meny för ögon (nummer + tecken)
-    # 2. Fråga efter val (1-7)
-    # 3. Gör samma för mun (1-5)
-    # 4. Gör samma för ram (1-6)
-    # 5. Anropa skapa_ansikte() och skriv ut resultatet
-    pass
+    print("you are creating your own face")
+    eye = ask_something("eyes", eyes)
+    mouth = ask_something("mouths", mouths)
+    cheek = ask_something("cheeks", cheeks)
+    return skapa_ansikte(eye, mouth, cheek)
 
 
 def skapa_kluster():
-    """
-    Låter användaren skapa ett kluster med samma ansikte.
-    Först väljer eller skapar användaren ett ansikte.
-    """
-    # TODO: Implementera funktionen
-    # 1. Fråga: Vill du använda ett befintligt ansikte eller skapa nytt?
-    # 2. Om nytt: anropa skapa_eget_ansikte() eller skapa_ansikte() direkt
-    # 3. Fråga efter bredd och höjd
-    # 4. Anropa skriv_ut_kluster()
-    pass
+    print("would you like to use an existing face or pick your own")
+
+    asking = True
+    while asking:
+        choice = input("Y/N > ").upper()
+        if choice in ["Y", "N"]:
+            asking = False
+        else:
+            print("that is not an option")
+    
+    if choice == "Y":
+        face = ask_something("face", ladda_ansikten_fran_json(json_url))
+    
+    else:
+        face = skapa_eget_ansikte()
+    
+    width, height = width_and_height()
+
+    skriv_ut_kluster(width, height, face)
 
 
 def visa_slump_ansikte():
-    """Visar ett slumpmässigt ansikte."""
-    # TODO: Anropa slumpa_ansikte() och skriv ut resultatet
-    pass
+    print(slumpa_ansikte())
 
 
 def visa_slumpkluster():
-    """
-    Låter användaren skapa ett kluster med slumpade ansikten.
-    Frågar efter bredd och höjd.
-    """
-    # TODO: Fråga efter bredd och höjd
-    # TODO: Anropa skriv_ut_slumpkluster()
-    pass
+    width, height = width_and_height()
+    skriv_ut_slumpkluster(width, height)
 
 
 # === HUVUDPROGRAM ===
@@ -119,7 +154,8 @@ def huvudprogram():
         val = input("Välj: ")
         
         if val == "1":
-            skapa_eget_ansikte()
+            face = skapa_eget_ansikte()
+            spara_ansikte_till_json(face, json_url)
         elif val == "2":
             skapa_kluster()
         elif val == "3":
@@ -150,17 +186,19 @@ def farglagg_ansikte(ansikte, farg_kod):
     pass
 
 
-def spara_ansikte_till_json(ansikte, filnamn="sparade_ansikten.json"):
-    """Sparar ett ansikte till en JSON-fil."""
-    # TODO: Importera json
-    # TODO: Ladda befintlig lista, lägg till nytt ansikte, spara
-    pass
+def spara_ansikte_till_json(ansikte, filnamn="faces.json"):
+    data = ladda_ansikten_fran_json(filnamn)
+    if ansikte not in data:
+        data.append(ansikte)
+
+        with open(filnamn, "w") as faces_file:
+            json.dump(data, faces_file)
 
 
-def ladda_ansikten_fran_json(filnamn="sparade_ansikten.json"):
-    """Laddar sparade ansikten från en JSON-fil."""
-    # TODO: Använd json.load() och returnera listan
-    pass
+def ladda_ansikten_fran_json(filnamn="faces.json"):
+    with open(filnamn, "r") as faces_file:
+        faces = json.load(faces_file)
+    return faces
 
 
 # === TURTLE-UTMANING (FÖR DIG MED TURTLE) ===
